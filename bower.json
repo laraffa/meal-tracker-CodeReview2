@@ -1,0 +1,21 @@
+{
+  "name": "meal-tracker",
+  "description": "meal-tracker app",
+  "main": "",
+  "authors": [
+    "lindsey <lindsey.raffa@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
