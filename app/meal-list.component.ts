@@ -4,7 +4,6 @@ import { Meal } from './meal.model';
 import { EditMealDetailsComponent } from './edit-meal-details.component';
 import { NewMealComponent } from './new-meal.component';
 import {LowPipe} from './low.pipe';
-// import {ShowFoodDetailsComponent} from './show-food-details.component';
 
 
 @Component({
@@ -16,17 +15,18 @@ import {LowPipe} from './low.pipe';
   template: `
   <select (change)="onChange($event.target.value)">
     <option value="all">Show All</option>
-    <option value="low">Show Low Calorie Foods</option>
-    <option value="notLow" selected="selected">Show High Calorie Foods</option>
+    <option value="low">Show Low Calorie</option>
+    <option value="notLow" selected="selected">Show High Calorie</option>
   </select>
-  <meal-display *ngFor="#currentMeal of MealList | low:filterLow:selectedMeal"
-    (click)="Clicked(currentMeal)"
-    [class.selected]= "currentMeal === selectedMeal"
-    [food]="currentMeal">
 
-  </food-display>
+  <meal-display *ngFor="#currentMeal of mealList | low:filterLow:selectedMeal"
+  (click)="mealClicked(currentMeal)"
+  [class.selected]= "currentMeal === selectedMeal"
+  [meal]="currentMeal">
+  </meal-display>
+
   <edit-meal-details *ngIf="selectedMeal"
-    [meal]="selectedMeal">
+  [meal]="selectedMeal">
   </edit-meal-details>
   <new-meal (onSubmitNewMeal)="createMeal($event)"></new-meal>
   `
@@ -37,7 +37,6 @@ export class MealListComponent {
   public onMealSelect: EventEmitter<Meal>;
   public selectedMeal: Meal;
   public filterLow: string = "notLow";
-
   constructor(){
     this.onMealSelect = new EventEmitter();
   }
@@ -52,4 +51,5 @@ export class MealListComponent {
   onChange(filterOption){
     this.filterLow = filterOption;
   }
+
 }
