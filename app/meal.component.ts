@@ -5,15 +5,20 @@ import { Meal } from './meal.model';
     selector: 'meal-display',
     inputs: ['meal'],
   template: `
-    <h3>{{ meal.mealName + " "}}<br>{{ meal.description }}<br>{{ meal.calories + " " + "calories"}} </h3>
+    <h3 (click)= "select()">{{ meal.mealName }} </h3>
+    <div *ngIf="hiddenDetail">
+    <p>{{ meal.description }}</p>
+    <p>{{ meal.calories }} </p>
+    </div>
 
 
   `
 })
 export class MealComponent {
   public meal: Meal;
+  public hiddenDetail: boolean= false;
+  select() {
+    this.hiddenDetail = !this.hiddenDetail;
+  }
 
-  // minusPint(selectedMeal: Meal){
-  //   this.meal.pints -= 1;
-  // }
 }
